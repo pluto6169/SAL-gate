@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SAL Gate</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f5f2;--ink:#17262b;--card:#fff;--pri:#0e5a63;--pri2:#e3f0f1;--acc:#a8741f;--mut:#667478;--line:#dde2df;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f181b;--ink:#e6e9e6;--card:#172226;--pri:#5cbac2;--pri2:#1a3338;--acc:#dcae62;--mut:#97a5a8;--line:#2a393d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f181b;--ink:#e6e9e6;--card:#172226;--pri:#5cbac2;--pri2:#1a3338;--acc:#dcae62;--mut:#97a5a8;--line:#2a393d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.75 "IBM Plex Sans Arabic",Tahoma,sans-serif}
+h1,h2,h3{font-family:Amiri,Georgia,serif;line-height:1.3;margin:0 0 .5rem}
+h1{font-size:clamp(2rem,5vw,3.2rem)}h2{font-size:1.7rem}h3{font-size:1.25rem}
+p{margin:.3rem 0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,.card:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 1.2rem;border-bottom:1px solid var(--line);background:var(--card)}
+.brand{font:700 1.6rem Amiri,serif;color:var(--pri);display:flex;align-items:center;gap:.6rem}
+.brand i{font:500 .75rem "IBM Plex Sans Arabic",sans-serif;background:var(--acc);color:#fff;padding:.05rem .55rem;border-radius:99px}
+.langs button{border:1px solid var(--line);background:none;padding:.15rem .7rem;margin-inline-start:.25rem;border-radius:99px}
+.langs button.on{background:var(--pri);color:var(--card);border-color:var(--pri)}
+nav{display:flex;gap:.3rem;overflow-x:auto;padding:.5rem 1.2rem;background:var(--card);border-bottom:1px solid var(--line)}
+nav button{white-space:nowrap;border:0;background:none;padding:.4rem .9rem;border-radius:8px;color:var(--mut)}
+nav button.on{background:var(--pri2);color:var(--pri);font-weight:600}
+main{max-width:1100px;margin:0 auto;padding:1.5rem 1.2rem 4rem}
+.banner{background:var(--pri2);border-inline-start:4px solid var(--acc);padding:.6rem 1rem;border-radius:8px;margin-bottom:1.5rem;font-size:.92rem}
+.hero{padding:1rem 0 2rem}.hero p{max-width:62ch;color:var(--mut);font-size:1.1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;text-align:start;cursor:pointer}
+.card:hover{border-color:var(--pri)}
+.card small,.mut{color:var(--mut)}
+.card b{color:var(--pri)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:1.2rem;align-items:start}
+@media(max-width:800px){.two{grid-template-columns:minmax(0,1fr)}}
+.side{position:sticky;top:1rem;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.1rem;border-top:4px solid var(--acc)}
+.chip{display:inline-block;font-size:.82rem;padding:0 .65rem;border-radius:99px;background:var(--pri2);color:var(--pri);margin:.15rem .1rem;border:0}
+.dot{display:inline-block;width:.7rem;height:.7rem;border-radius:50%;margin-inline-end:.4rem}
+input[type=search],input[type=text]{width:100%;padding:.65rem 1rem;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+.btn{background:var(--pri);color:var(--card);border:0;border-radius:10px;padding:.6rem 1.1rem;font-weight:600}
+table{width:100%;border-collapse:collapse;background:var(--card)}
+th,td{padding:.6rem .8rem;border-bottom:1px solid var(--line);text-align:start}
+th{background:var(--pri2);color:var(--pri)}
+.wrap{overflow-x:auto;border-radius:12px}
+svg{display:block}
+svg text{fill:var(--ink);font:500 12px "IBM Plex Sans Arabic",sans-serif}
+.br{fill:none;stroke:var(--mut);stroke-width:2;stroke-opacity:.6}
+.nd rect{fill:var(--card);stroke-width:2.5;cursor:pointer}
+.nd.sel rect{fill:var(--pri2)}
+.tg{fill:var(--card);stroke:var(--acc);stroke-width:2;cursor:pointer}
+.tgt{fill:var(--acc)!important;font-weight:700;pointer-events:none}
+.bub{padding:.8rem 1rem;border-radius:12px;margin:.6rem 0;max-width:640px}
+.me{background:var(--pri);color:var(--card);margin-inline-start:auto}
+.bot{background:var(--card);border:1px solid var(--line)}
+.files{direction:ltr;text-align:left;white-space:pre;font:.85rem/1.6 monospace;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem;overflow:auto}
+.step{display:flex;gap:.8rem;align-items:flex-start;margin:.6rem 0}
+.step span{background:var(--acc);color:#fff;border-radius:50%;width:1.8rem;height:1.8rem;flex:none;display:grid;place-items:center;font-weight:700}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand">SAL Gate <i id="demo"></i></div><div class="langs" id="langs"></div></header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<script>
+const LI={ar:0,en:1,fr:2};
+const D={
+c:[
+{id:1,p:0,k:"field",l:{ar:"المعرفة",en:"Knowledge",fr:"Connaissance"},d:{ar:"مجموع المفاهيم والمعلومات المنظّمة التي يمكن توثيقها وتبادلها.",en:"Organized concepts and information that can be documented and shared.",fr:"Concepts et informations organisés, documentables et partageables."},s:[1]},
+{id:2,p:1,k:"field",l:{ar:"تنظيم المعرفة",en:"Knowledge Organization",fr:"Organisation des connaissances"},d:{ar:"فرع يُعنى بوصف المفاهيم وتصنيفها وربطها ليسهل الوصول إليها.",en:"The field of describing, classifying and linking concepts for access.",fr:"Domaine de description, classement et liaison des concepts."},s:[1]},
+{id:3,p:2,k:"process",l:{ar:"التصنيف",en:"Classification",fr:"Classification"},d:{ar:"ترتيب المفاهيم في فئات وفق خصائص مشتركة.",en:"Arranging concepts into categories by shared traits.",fr:"Répartition des concepts en catégories selon des traits communs."},s:[1]},
+{id:4,p:2,k:"process",l:{ar:"الفهرسة",en:"Cataloging",fr:"Catalogage"},d:{ar:"وصف المصادر وتسجيل بياناتها بشكل منهجي لتيسير العثور عليها.",en:"Systematically describing sources so they can be found.",fr:"Description méthodique des sources pour les retrouver."},s:[2]},
+{id:5,p:4,k:"data",l:{ar:"البيانات الوصفية",en:"Metadata",fr:"Métadonnées"},d:{ar:"بيانات تصف المصدر أو المفهوم: العنوان والمؤلف والتاريخ والترخيص.",en:"Data describing a source or concept: title, author, date, license.",fr:"Données décrivant une source ou un concept : titre, auteur, date, licence."},s:[2]},
+{id:6,p:3,k:"tool",l:{ar:"المكنز",en:"Thesaurus",fr:"Thésaurus"},d:{ar:"مفردات مضبوطة تربط المصطلحات بمرادفاتها وعلاقاتها الأعم والأخص.",en:"A controlled vocabulary linking terms to synonyms and broader/narrower terms.",fr:"Vocabulaire contrôlé reliant termes, synonymes et relations hiérarchiques."},s:[1,2]},
+{id:7,p:3,k:"tool",l:{ar:"الأنطولوجيا",en:"Ontology",fr:"Ontologie"},d:{ar:"تمثيل رسمي لمفاهيم مجال ما وعلاقاتها.",en:"A formal representation of a domain’s concepts and their relations.",fr:"Représentation formelle des concepts d’un domaine et de leurs relations."},s:[1]},
+{id:8,p:1,k:"process",l:{ar:"استرجاع المعلومات",en:"Information Retrieval",fr:"Recherche d’information"},d:{ar:"إيجاد المحتوى المناسب لحاجة المستخدم من مجموعة كبيرة.",en:"Finding the content that fits a user’s need in a large collection.",fr:"Trouver le contenu adapté au besoin de l’utilisateur."},s:[3]},
+{id:9,p:8,k:"process",l:{ar:"التكشيف",en:"Indexing",fr:"Indexation"},d:{ar:"استخراج مداخل البحث من المحتوى لتسريع الاسترجاع.",en:"Extracting search entry points from content to speed up retrieval.",fr:"Extraction de points d’accès pour accélérer la recherche."},s:[3]},
+{id:10,p:1,k:"principle",l:{ar:"التوثيق والمصدرية",en:"Provenance",fr:"Provenance"},d:{ar:"ربط كل معلومة بمصدرها وتاريخ مراجعتها وترخيصها.",en:"Tying every statement to its source, review date and license.",fr:"Lier chaque énoncé à sa source, sa date de révision et sa licence."},s:[1,2,3]}],
+r:[[9,8,"part"],[6,9,"uses"],[7,8,"uses"],[5,10,"supports"],[4,9,"prec"]],
+s:[
+{id:1,t:["مدخل إلى تنظيم المعرفة (مرجع تجريبي)","Introduction to Knowledge Organization (sample)","Introduction à l’organisation des connaissances (fictif)"],a:["مؤلف تجريبي","Sample author","Auteur fictif"],y:2020,k:["كتاب","Book","Livre"],lic:["CC BY","CC BY","CC BY"],acc:["نص كامل","Full text","Texte intégral"]},
+{id:2,t:["دليل الفهرسة الوصفية (مرجع تجريبي)","Descriptive Cataloging Guide (sample)","Guide du catalogage descriptif (fictif)"],a:["مؤسسة تجريبية","Sample institution","Institution fictive"],y:2018,k:["دليل","Guide","Guide"],lic:["CC BY-SA","CC BY-SA","CC BY-SA"],acc:["نص كامل","Full text","Texte intégral"]},
+{id:3,t:["مبادئ استرجاع المعلومات (مرجع تجريبي)","Principles of Information Retrieval (sample)","Principes de la recherche d’information (fictif)"],a:["مؤلف تجريبي","Sample author","Auteur fictif"],y:2015,k:["كتاب","Book","Livre"],lic:["محفوظ","Reserved","Réservé"],acc:["مقتطفات فقط","Excerpts only","Extraits seulement"]}]};
+const TG={1:{"أساسيات":5,"basics":3},2:{"basics":2,"تنظيم":2},3:{"للمبتدئين":4,"beginner":3,"classement":1},4:{"مكتبات":3,"library":2,"bibliothèque":2},5:{"metadata":6,"بيانات":2},6:{"مفردات":2,"vocabulary":3},7:{"web sémantique":2,"semantic web":2,"ذكاء اصطناعي":1},8:{"بحث":4,"search":3,"recherche":2},9:{"بحث":2,"index":2},10:{"مهم":3,"trust":2,"مصادر":2}};
+const CL={field:{c:"#0e7c86",n:["مجال","Field","Domaine"]},process:{c:"#b8741f",n:["عملية","Process","Processus"]},tool:{c:"#7a5bb5",n:["أداة","Tool","Outil"]},data:{c:"#3b8a4a",n:["بيانات","Data","Données"]},principle:{c:"#c0504d",n:["مبدأ","Principle","Principe"]}};
+const RC={bt:"#8a9a9d",part:"#0e8a96",uses:"#c27d1e",supports:"#3b8a4a",prec:"#8a63c9"};
+const RN={bt:["أعم/أخص","broader/narrower","plus large/étroit"],part:["جزء من","part of","partie de"],uses:["يُستخدم في","used in","utilisé dans"],supports:["يدعم","supports","soutient"],prec:["يمهّد لـ","leads to","mène à"]};
+const MODS=[
+["glossary","SAL Glossary",["المعجم","Glossary","Glossaire"],["المفاهيم وتعريفاتها بثلاث لغات، وكل تعريف له مصدر.","Concepts and definitions in three languages, each with a source.","Concepts et définitions en trois langues, chacune avec sa source."]],
+["tree","SAL Tree",["شجرة المعرفة","Knowledge tree","Arbre"],["التاكسونومي: المفاهيم مرتبة من الأعم إلى الأخص على فروع شجرة.","Taxonomy: concepts arranged from broader to narrower along tree branches.","Taxonomie : les concepts rangés du plus large au plus étroit, en branches."]],
+["atlas","SAL Atlas",["العلاقات","Relations","Relations"],["الأنطولوجيا: شبكة علاقات محددة النوع، وكل مفهوم له صنف. اسحب الدوائر.","Ontology: a network of typed relations; every concept has a class. Drag the nodes.","Ontologie : relations typées, chaque concept a une classe. Déplacez les nœuds."]],
+["library","SAL Library",["المراجع","Library","Bibliothèque"],["الكتب والوثائق التي بُنيت عليها التعريفات، وكيف تصل إليها.","The books and documents behind the definitions, and how to access them.","Les livres et documents derrière les définitions, et leur accès."]],
+["search","SAL Search",["البحث","Search","Recherche"],["بحث بالعربية والإنجليزية والفرنسية معًا، يشمل الوسوم.","Search in all three languages at once, tags included.","Recherche dans les trois langues à la fois, étiquettes comprises."]],
+["rag","SAL RAG",["المساعد","Assistant","Assistant"],["اسأل سؤالًا فيجيب من المحتوى المعتمد فقط ويذكر المصدر.","Ask a question; it answers only from approved content and cites sources.","Posez une question ; réponse issue du contenu validé, avec sources."]],
+["lingua","SAL Lingua",["اللغات","Languages","Langues"],["بدّل اللغة من الأعلى فيتغير كل شيء: التصفح والبحث والمساعد.","Switch language above and everything follows: browsing, search, assistant.","Changez la langue en haut : navigation, recherche et assistant suivent."]],
+["tags","SAL Tags",["الوسوم","Tags","Étiquettes"],["الفولكسونومي: وسوم حرة يضيفها القرّاء وتكبر بكثرة الاستخدام.","Folksonomy: free tags added by readers, growing with use.","Folksonomie : étiquettes libres des lecteurs, plus grandes si plus utilisées."]]];
+const T={
+demo:["ديمو","Demo","Démo"],
+home:["الرئيسية","Home","Accueil"],
+banner:["نسخة ديمو: المحتوى كله تجريبي ويُستبدل بالبيانات الحقيقية لاحقًا.","Demo version: all content is sample data, to be replaced with real data later.","Version démo : tout le contenu est fictif et sera remplacé par les vraies données."],
+h1:["بوابة واحدة لمعرفة منظَّمة وموثَّقة","One gateway to organized, documented knowledge","Un portail unique pour des connaissances organisées et documentées"],
+intro:["SAL Gate موقع أكاديمي يجمع المفاهيم وتعريفاتها ومراجعها وعلاقاتها في مكان واحد، وكل معلومة مربوطة بمصدرها. هذه نسخة ديمو بمحتوى تجريبي لترى الشكل الكامل قبل البيانات الحقيقية.","SAL Gate is an academic site that brings concepts, definitions, references and relations together, every statement tied to its source. This demo uses sample content so you can see the whole product before real data arrives.","SAL Gate est un site académique qui réunit concepts, définitions, références et relations, chaque énoncé étant lié à sa source. Cette démo utilise des données fictives pour voir l’ensemble avant les vraies données."],
+struct:["ثلاث طرق لتنظيم المعرفة","Three ways to structure knowledge","Trois façons de structurer les connaissances"],
+tax:["التاكسونومي","Taxonomy","Taxonomie"],
+taxd:["ترتيب هرمي: لكل مفهوم أعمّ منه وأخصّ. تراه في «شجرة المعرفة».","A hierarchy: each concept has a broader and a narrower one. See the knowledge tree.","Une hiérarchie : chaque concept a un plus large et un plus étroit. Voir l’arbre."],
+ont:["الأنطولوجيا","Ontology","Ontologie"],
+ontd:["شبكة علاقات محددة النوع (جزء من، يُستخدم في…) ولكل مفهوم صنف. تراها في «العلاقات».","A network of typed relations (part of, used in…) where each concept has a class. See Relations.","Un réseau de relations typées (partie de, utilisé dans…), chaque concept a une classe. Voir Relations."],
+fol:["الفولكسونومي","Folksonomy","Folksonomie"],
+fold:["وسوم حرة يضيفها القرّاء بكلماتهم، فتكشف كيف يفكّر الناس. تراها في «الوسوم».","Free tags readers add in their own words, showing how people think. See Tags.","Étiquettes libres ajoutées par les lecteurs, révélant leur façon de penser. Voir Étiquettes."],
+start:["كيف تبدأ؟","How to start","Pour commencer"],
+s1:["افتح شجرة المعرفة وانقر على أي فرع لترى بطاقته.","Open the knowledge tree and click any branch to see its card.","Ouvrez l’arbre et cliquez sur une branche pour voir sa fiche."],
+s2:["من البطاقة انتقل إلى مفاهيم مرتبطة، أو اسحب الدوائر في خريطة العلاقات.","From a card, jump to related concepts, or drag the nodes in the relations map.","Depuis la fiche, passez aux concepts liés ou déplacez les nœuds de la carte."],
+s3:["أضف وسمًا بكلماتك، وجرّب البحث والمساعد، وبدّل اللغة من الأعلى.","Add a tag in your own words, try search and the assistant, and switch language.","Ajoutez une étiquette, essayez la recherche et l’assistant, changez de langue."],
+hood:["البناء من الداخل","Under the hood","Sous le capot"],
+hoodd:["موقع واحد، وقاعدة بيانات واحدة، وثلاث تقنيات فقط. هذا الديمو ملف واحد والبيانات في أعلى الكود.","One site, one database, three technologies. This demo is a single file with the data at the top.","Un site, une base, trois technologies. Cette démo est un fichier unique avec les données en haut."],
+det:["التفاصيل","Details","Détails"],
+detHint:["اختر أي مفهوم لتظهر هنا بطاقته: أسماؤه وصنفه وتعريفه ومصادره وعلاقاته ووسومه.","Pick any concept to see its card here: names, class, definition, sources, relations and tags.","Choisissez un concept pour voir sa fiche : noms, classe, définition, sources, relations, étiquettes."],
+cls:["الصنف","Class","Classe"],path:["المسار في الشجرة","Path in the tree","Chemin dans l’arbre"],nar:["الأخص","Narrower","Plus étroit"],src:["المصادر","Sources","Sources"],rel:["العلاقات","Relations","Relations"],tg:["الوسوم","Tags","Étiquettes"],
+addPh:["أضف وسمًا","Add a tag","Ajouter une étiquette"],add:["إضافة","Add","Ajouter"],
+cnt:["مفهومًا تجريبيًا","sample concepts","concepts fictifs"],
+treeHint:["انقر على الاسم للتفاصيل، وعلى الدائرة الصغيرة لفتح الفرع أو إغلاقه.","Click a name for details, the small circle to open or close a branch.","Cliquez un nom pour les détails, le petit cercle pour ouvrir ou fermer une branche."],
+atlasHint:["اسحب أي دائرة لتحريكها، وانقر عليها للتفاصيل. أخفِ أو أظهر أنواع العلاقات من الأزرار.","Drag a node to move it, click it for details. Toggle relation types with the buttons.","Déplacez un nœud, cliquez pour les détails. Affichez ou masquez les types de relations."],
+legCls:["أصناف المفاهيم","Concept classes","Classes de concepts"],
+lt:["العنوان","Title","Titre"],la:["المؤلف","Author","Auteur"],ly:["السنة","Year","Année"],lk:["النوع","Type","Type"],ll:["الترخيص","License","Licence"],lc:["الوصول","Access","Accès"],
+sPh:["ابحث في الأسماء والتعريفات والوسوم بكل اللغات","Search names, definitions and tags in any language","Rechercher noms, définitions et étiquettes dans toutes les langues"],
+sHint:["جرّب كلمة مثل: تصنيف، metadata، thésaurus، beginner","Try a word such as: classification, metadata, thésaurus, بحث","Essayez un mot comme : classification, metadata, thésaurus, بحث"],
+none:["لا توجد نتائج. جرّب كلمة أقصر أو بلغة أخرى.","No results. Try a shorter word or another language.","Aucun résultat. Essayez un mot plus court ou une autre langue."],
+all:["الكل","All","Tous"],
+ragNote:["في النسخة الحقيقية تُرسل المقاطع المسترجعة إلى نموذج لغوي لصياغة الإجابة. هنا محاكاة بسيطة.","In the real version, retrieved passages go to a language model to word the answer. This is a simple simulation.","Dans la vraie version, les passages sont envoyés à un modèle de langage. Ici, une simple simulation."],
+ragPre:["بحسب المحتوى المعتمد:","From the approved content:","D’après le contenu validé :"],
+ragNone:["لا أجد معلومة عن هذا في قاعدة المعرفة، ولن أخمّن. اسأل عن مفهوم موجود.","I can’t find this in the knowledge base, and I won’t guess. Ask about an existing concept.","Je ne trouve pas cela dans la base et je ne devine pas. Posez une question sur un concept existant."],
+ragPh:["اكتب سؤالك","Type your question","Écrivez votre question"],ask:["اسأل","Ask","Demander"],
+q1:["ما هو المكنز؟","What is a thesaurus?","Qu’est-ce qu’un thésaurus ?"],
+q2:["ما الفرق بين الفهرسة والتصنيف؟","What is cataloging and classification?","Catalogage et classification ?"],
+q3:["ما هي الذاكرة الكمية؟","What is quantum memory?","Qu’est-ce que la mémoire quantique ?"],
+cur:["اللغة الحالية","Current language","Langue actuelle"],
+linNote:["بدّل اللغة من الأزرار أعلى الصفحة. وسوم القرّاء تبقى بلغتهم الأصلية لأنها كلمات حرة.","Switch with the buttons above. Reader tags stay in their original language, since they are free words.","Changez avec les boutons en haut. Les étiquettes restent dans la langue des lecteurs, car ce sont des mots libres."],
+tagHint:["كلما استخدم القرّاء الوسم أكثر كبر حجمه. انقر وسمًا لترى مفاهيمه.","The more readers use a tag, the bigger it gets. Click one to see its concepts.","Plus une étiquette est utilisée, plus elle grandit. Cliquez pour voir ses concepts."],
+tagPick:["اختر وسمًا من السحابة.","Pick a tag from the cloud.","Choisissez une étiquette dans le nuage."]};
+const LN={ar:"العربية",en:"English",fr:"Français"};
+let L="ar",P="home",SEL=null,Q="",SF="",TS=null,POS=null,DR=null,MV=0;
+const COL=new Set(),CHAT=[],RT_ON={bt:1,part:1,uses:1,supports:1,prec:1};
+const $=s=>document.querySelector(s);
+const x=a=>a[LI[L]],t=k=>x(T[k]),C=id=>D.c.find(c=>c.id===id),S=id=>D.s.find(s=>s.id===id),ML=p=>x(MODS.find(m=>m[0]===p)[2]);
+const esc=s=>s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const norm=s=>(s||"").replace(/[أإآ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").normalize("NFD").replace(/[\u0300-\u036f\u064B-\u065F\u0640]/g,"").toLowerCase();
+const kids=id=>D.c.filter(c=>c.p===id);
+const enc=k=>`selTag(decodeURIComponent('${encodeURIComponent(k)}'))`;
+function go(p){P=p;render();window.scrollTo(0,0)}
+function pick(id){SEL=id;render()}
+function selTag(k){TS=k;P="tags";render()}
+function tog(id){COL.has(id)?COL.delete(id):COL.add(id);render()}
+function setL(l){L=l;document.documentElement.lang=l;document.documentElement.dir=l==="ar"?"rtl":"ltr";render()}
+function addTag(id,v){v=v.trim();if(!v)return;TG[id]=TG[id]||{};TG[id][v]=(TG[id][v]||0)+1;render()}
+function detail(){
+ if(!SEL)return `<div class="side"><h3>${t("det")}</h3><p class="mut">${t("detHint")}</p></div>`;
+ const c=C(SEL),path=[];for(let q=c;q;q=C(q.p))path.unshift(q);
+ const nar=kids(c.id),rel=D.r.filter(r=>r[0]===c.id||r[1]===c.id),tg=Object.entries(TG[c.id]||{});
+ return `<div class="side"><h3>${c.l[L]}</h3><p class="mut">${c.l.ar} · ${c.l.en} · ${c.l.fr}</p>
+ <p><span class="dot" style="background:${CL[c.k].c}"></span><b>${t("cls")}:</b> ${x(CL[c.k].n)}</p><p>${c.d[L]}</p>
+ <p><b>${t("path")}</b></p><p>${path.map(q=>`<button class="chip" onclick="pick(${q.id})">${q.l[L]}</button>`).join(" / ")}</p>
+ ${nar.length?`<p><b>${t("nar")}</b></p>${nar.map(q=>`<button class="chip" onclick="pick(${q.id})">${q.l[L]}</button>`).join("")}`:""}
+ <p><b>${t("src")}</b></p>${c.s.map(i=>`<span class="chip">${x(S(i).t)}</span>`).join("")}
+ ${rel.length?`<p><b>${t("rel")}</b></p>${rel.map(r=>{const s=r[0]===c.id,o=s?r[1]:r[0];return `<button class="chip" onclick="pick(${o})">${s?x(RN[r[2]])+": "+C(o).l[L]:C(o).l[L]+" ← "+x(RN[r[2]])}</button>`}).join("")}`:""}
+ <p><b>${t("tg")}</b></p>${tg.map(([k,n])=>`<button class="chip" onclick="${enc(k)}">${esc(k)} · ${n}</button>`).join("")}
+ <form onsubmit="event.preventDefault();addTag(${c.id},this.v.value)" style="display:flex;gap:.4rem;margin-top:.6rem"><input type="text" name="v" placeholder="${t("addPh")}"><button class="btn">${t("add")}</button></form></div>`}
+function layout(){const pos={};let row=0;
+ (function f(id,d){const k=COL.has(id)?[]:kids(id);
+  if(!k.length){pos[id]={d,r:row++};return}
+  k.forEach(c=>f(c.id,d+1));pos[id]={d,r:(pos[k[0].id].r+pos[k[k.length-1].id].r)/2}})(1,0);
+ return pos}
+function tree(){
+ const pos=layout(),W=200,DX=235,DY=54,rtl=L==="ar",v=Object.values(pos);
+ const w=Math.max(...v.map(p=>p.d))*DX+W+40,h=Math.max(...v.map(p=>p.r))*DY+80;
+ const X=d=>rtl?w-20-W-d*DX:20+d*DX,Y=r=>40+r*DY;
+ let br="",nd="";
+ for(const id in pos){const c=C(+id),p=pos[id],cy=Y(p.r);
+  if(c.p&&pos[c.p]){const q=pos[c.p],x1=rtl?X(q.d):X(q.d)+W,x2=rtl?X(p.d)+W:X(p.d),m=(x1+x2)/2;
+   br+=`<path class="br" d="M${x1} ${Y(q.r)}C${m} ${Y(q.r)} ${m} ${cy} ${x2} ${cy}"/>`}
+  const has=kids(c.id).length,ex=rtl?X(p.d):X(p.d)+W;
+  nd+=`<g class="nd ${SEL===c.id?"sel":""}"><rect x="${X(p.d)}" y="${cy-18}" width="${W}" height="36" rx="18" style="stroke:${CL[c.k].c}" onclick="pick(${c.id})"/><text x="${X(p.d)+W/2}" y="${cy+4}" text-anchor="middle" style="pointer-events:none;${c.p?"":"font-weight:700"}">${c.l[L]}</text>
+  ${has?`<circle class="tg" cx="${ex}" cy="${cy}" r="9" onclick="tog(${c.id})"/><text class="tgt" x="${ex}" y="${cy+4}" text-anchor="middle">${COL.has(c.id)?"+":"−"}</text>`:""}</g>`}
+ return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">${br}${nd}</svg>`}
+const edges=()=>[...D.c.filter(c=>c.p).map(c=>[c.p,c.id,"bt"]),...D.r];
+function initPos(){POS={};const n=D.c.length,E=edges();
+ D.c.forEach((c,i)=>{const a=i/n*6.283;POS[c.id]=[350+160*Math.cos(a),230+130*Math.sin(a)]});
+ for(let it=0;it<250;it++){const F={};D.c.forEach(c=>F[c.id]=[0,0]);
+  D.c.forEach(a=>D.c.forEach(b=>{if(a.id>=b.id)return;const dx=POS[a.id][0]-POS[b.id][0],dy=POS[a.id][1]-POS[b.id][1],d=Math.sqrt(dx*dx+dy*dy+1),f=7000/(d*d);F[a.id][0]+=f*dx/d;F[a.id][1]+=f*dy/d;F[b.id][0]-=f*dx/d;F[b.id][1]-=f*dy/d}));
+  E.forEach(([a,b])=>{const dx=POS[b][0]-POS[a][0],dy=POS[b][1]-POS[a][1],d=Math.hypot(dx,dy)||1,f=(d-120)*.03;F[a][0]+=f*dx/d;F[a][1]+=f*dy/d;F[b][0]-=f*dx/d;F[b][1]-=f*dy/d});
+  D.c.forEach(c=>{const p=POS[c.id],f=F[c.id];p[0]=Math.min(650,Math.max(50,p[0]+f[0]*.5-(p[0]-350)*.01));p[1]=Math.min(410,Math.max(40,p[1]+f[1]*.5-(p[1]-230)*.01))})}}
+function atlasSvg(){
+ const mk=Object.keys(RC).map(k=>`<marker id="m${k}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${RC[k]}"/></marker>`).join("");
+ const ls=edges().filter(e=>RT_ON[e[2]]).map(([a,b,k])=>{const p=POS[a],q=POS[b],dx=q[0]-p[0],dy=q[1]-p[1],d=Math.hypot(dx,dy)||1,ux=dx/d,uy=dy/d;
+  const x1=p[0]+ux*22,y1=p[1]+uy*22,x2=q[0]-ux*25,y2=q[1]-uy*25;
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${RC[k]}" stroke-width="2" ${k==="bt"?'stroke-dasharray="5 4"':""} marker-end="url(#m${k})"/>`+(k==="bt"?"":`<text x="${(x1+x2)/2}" y="${(y1+y2)/2-5}" text-anchor="middle" style="font-size:10px;fill:${RC[k]}">${x(RN[k])}</text>`)}).join("");
+ const ns=D.c.map(c=>`<circle onpointerdown="DR=${c.id};MV=0" cx="${POS[c.id][0]}" cy="${POS[c.id][1]}" r="20" fill="${CL[c.k].c}" stroke="${SEL===c.id?"var(--ink)":"#fff"}" stroke-width="${SEL===c.id?4:2}" style="cursor:grab;touch-action:none"/><text x="${POS[c.id][0]}" y="${POS[c.id][1]+36}" text-anchor="middle" style="paint-order:stroke;stroke:var(--bg);stroke-width:3px;pointer-events:none">${c.l[L]}</text>`).join("");
+ return `<svg viewBox="0 0 700 460" style="min-width:600px;width:100%"><defs>${mk}</defs>${ls}${ns}</svg>`}
+function mv(e){if(DR==null)return;MV=1;const s=$("#ab svg"),p=s.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(s.getScreenCTM().inverse());POS[DR]=[Math.min(670,Math.max(30,q.x)),Math.min(420,Math.max(30,q.y))];$("#ab").innerHTML=atlasSvg()}
+function up(){const i=DR,m=MV;DR=null;if(i!=null&&!m)pick(i)}
+function atlasPage(){if(!POS)initPos();
+ return `<div><div style="margin-bottom:.6rem">${Object.keys(RC).map(k=>`<button class="chip" style="border:2px solid ${RC[k]};opacity:${RT_ON[k]?1:.4}" onclick="RT_ON['${k}']=!RT_ON['${k}'];render()">${x(RN[k])}</button>`).join("")}</div>
+ <div class="wrap card" style="padding:0"><div id="ab" onpointermove="mv(event)" onpointerup="up()" onpointerleave="DR=null">${atlasSvg()}</div></div>
+ <p class="mut" style="margin-top:.6rem"><b>${t("legCls")}:</b> ${Object.values(CL).map(c=>`<span style="margin-inline-end:.8rem"><span class="dot" style="background:${c.c}"></span>${x(c.n)}</span>`).join("")}</p></div>`}
+function conceptCards(list){return `<div class="grid">${list.map(c=>`<div class="card" tabindex="0" onclick="go('glossary');pick(${c.id})"><span class="dot" style="background:${CL[c.k].c}"></span><b>${c.l[L]}</b><br><small>${c.d[L]}</small><div>${Object.keys(TG[c.id]||{}).slice(0,3).map(k=>`<span class="chip">${esc(k)}</span>`).join("")}</div></div>`).join("")}</div>`}
+function results(){const q=norm(Q).trim();
+ if(!q&&!SF)return `<p class="mut">${t("sHint")}</p>`;
+ const r=D.c.filter(c=>(!SF||c.k===SF)&&norm([...Object.values(c.l),...Object.values(c.d),...Object.keys(TG[c.id]||{})].join(" ")).includes(q));
+ return r.length?conceptCards(r):`<p>${t("none")}</p>`}
+function ask(q){q=q.trim();if(!q)return;const n=norm(q);
+ const m=D.c.map(c=>[c,Math.max(0,...Object.values(c.l).map(v=>{const y=norm(v);return n.includes(y)?y.length:0}))]).filter(a=>a[1]).sort((a,b)=>b[1]-a[1]).slice(0,2);
+ CHAT.push({q,a:m.length?t("ragPre")+"<br>"+m.map(([c])=>`<b>${c.l[L]}</b>: ${c.d[L]} ${c.s.map(i=>`<span class="chip">${x(S(i).t)}</span>`).join("")}`).join("<br>"):t("ragNone")});render()}
+function view(){
+ if(P==="home")return `<div class="hero"><h1>${t("h1")}</h1><p>${t("intro")}</p></div>
+ <div class="grid">${MODS.map(m=>`<div class="card" tabindex="0" onclick="go('${m[0]}')"><b>${m[1]}</b> <small>${x(m[2])}</small><p>${x(m[3])}</p></div>`).join("")}</div>
+ <h2 style="margin-top:2.5rem">${t("struct")}</h2>
+ <div class="grid">${[["tax","taxd","tree"],["ont","ontd","atlas"],["fol","fold","tags"]].map(a=>`<div class="card" tabindex="0" onclick="go('${a[2]}')"><b>${t(a[0])}</b><p>${t(a[1])}</p></div>`).join("")}</div>
+ <h2 style="margin-top:2.5rem">${t("start")}</h2>
+ ${[1,2,3].map(i=>`<div class="step"><span>${i}</span><p>${t("s"+i)}</p></div>`).join("")}
+ <h2 style="margin-top:2rem">${t("hood")}</h2><p class="mut">${t("hoodd")}</p>
+ <div class="files">SAL-Gate/
+├── app.py            # server
+├── database.py       # SQLite
+├── database/sal_gate.db
+├── web/  index.html · style.css · app.js
+├── uploads/          # references, images
+└── imports/incoming/ # new data</div>`;
+ const h=`<h2>${ML(P)}</h2>`;
+ if(P==="glossary")return h+`<p class="mut">${D.c.length} ${t("cnt")}</p><div class="two"><div class="grid" style="grid-template-columns:1fr 1fr">${D.c.map(c=>`<div class="card" tabindex="0" onclick="pick(${c.id})" style="${SEL===c.id?"border-color:var(--pri)":""}"><span class="dot" style="background:${CL[c.k].c}"></span><b>${c.l[L]}</b><br><small>${c.d[L]}</small></div>`).join("")}</div>${detail()}</div>`;
+ if(P==="tree")return h+`<p class="mut">${t("treeHint")}</p><div class="two"><div class="wrap card" style="padding:.5rem">${tree()}</div>${detail()}</div>`;
+ if(P==="atlas")return h+`<p class="mut">${t("atlasHint")}</p><div class="two">${atlasPage()}${detail()}</div>`;
+ if(P==="library")return h+`<div class="wrap"><table><tr>${["lt","la","ly","lk","ll","lc"].map(k=>`<th>${t(k)}</th>`).join("")}</tr>${D.s.map(s=>`<tr><td>${x(s.t)}</td><td>${x(s.a)}</td><td>${s.y}</td><td>${x(s.k)}</td><td>${x(s.lic)}</td><td>${x(s.acc)}</td></tr>`).join("")}</table></div>`;
+ if(P==="search")return h+`<input type="search" value="${esc(Q)}" placeholder="${t("sPh")}" oninput="Q=this.value;$('#res').innerHTML=results()" style="margin:.5rem 0">
+ <div style="margin-bottom:1rem"><button class="chip" style="${SF?"opacity:.5":""}" onclick="SF='';render()">${t("all")}</button>${Object.entries(CL).map(([k,c])=>`<button class="chip" style="border:2px solid ${c.c};${SF===k?"":"opacity:.6"}" onclick="SF='${k}';render()">${x(c.n)}</button>`).join("")}</div><div id="res">${results()}</div>`;
+ if(P==="rag")return h+`<p class="mut">${t("ragNote")}</p><div>${[1,2,3].map(i=>`<button class="chip" onclick="ask(t('q${i}'))">${t("q"+i)}</button>`).join("")}</div>${CHAT.map(m=>`<div class="bub me">${esc(m.q)}</div><div class="bub bot">${m.a}</div>`).join("")}<form onsubmit="event.preventDefault();ask(this.q.value)" style="display:flex;gap:.5rem;margin-top:1rem"><input type="text" name="q" placeholder="${t("ragPh")}"><button class="btn">${t("ask")}</button></form>`;
+ if(P==="lingua")return h+`<p>${t("cur")}: <b>${LN[L]}</b></p><p class="mut">${t("linNote")}</p><div class="wrap"><table><tr><th>العربية</th><th>English</th><th>Français</th></tr>${D.c.map(c=>`<tr><td>${c.l.ar}</td><td>${c.l.en}</td><td>${c.l.fr}</td></tr>`).join("")}</table></div>`;
+ if(P==="tags"){const A={};Object.values(TG).forEach(o=>Object.entries(o).forEach(([k,n])=>A[k]=(A[k]||0)+n));
+  return h+`<p class="mut">${t("tagHint")}</p><div class="card" style="margin:1rem 0">${Object.entries(A).sort((a,b)=>a[0].localeCompare(b[0])).map(([k,n])=>`<button class="chip" style="font-size:${.85+n*.14}rem;padding:.1rem .8rem;${TS===k?"background:var(--acc);color:#fff":""}" onclick="${enc(k)}">${esc(k)}</button>`).join("")}</div>
+  ${TS?`<h3>${t("tg")}: ${esc(TS)}</h3>`+conceptCards(D.c.filter(c=>(TG[c.id]||{})[TS])):`<p class="mut">${t("tagPick")}</p>`}`}
+}
+function render(){
+ $("#demo").textContent=t("demo");
+ $("#langs").innerHTML=["ar","en","fr"].map(l=>`<button class="${l===L?"on":""}" onclick="setL('${l}')">${l.toUpperCase()}</button>`).join("");
+ $("#nav").innerHTML=`<button class="${P==="home"?"on":""}" onclick="go('home')">${t("home")}</button>`+MODS.map(m=>`<button class="${P===m[0]?"on":""}" onclick="go('${m[0]}')">${x(m[2])}</button>`).join("");
+ $("#main").innerHTML=`<div class="banner">${t("banner")}</div>`+view();
+}
+render();
+</script>
+</body>
+</html>
